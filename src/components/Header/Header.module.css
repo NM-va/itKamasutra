@@ -1,0 +1,30 @@
+.header {
+    grid-area: h;
+    background-color: palegreen;
+}
+
+.header img {
+    width: 20px;
+}
+
+.loginBlock {
+    float: right;
+}
+
+.loginBlock a {
+    color: #fff;
+}
+
+.avatarIcon {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    display: inline-block;
+    border-radius: 100%;
+}
+
+.avatarIcon img {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
