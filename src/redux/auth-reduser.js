@@ -60,3 +60,19 @@ export const getAuthUserData = () => {
     ;
   }
 };
+
+export const login = (email, password, rememberMe) => {
+  return (dispatch) => {
+    authAPI.login(email, password, rememberMe)
+        .then(data => {
+          if (data.resultCode === 0) {
+            let  {id, login, email} = data.data;
+
+          }
+        })
+        .then(id => {
+          userAPI.getProfile(id);
+        })
+    ;
+  }
+};
