@@ -28,7 +28,7 @@ const LoginForm = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
-const Login = () => {
+const Login = (props) => {
   const onSubmit = (formData) => {
     // let dataUser = updateNewMessageActionCreator(formData);
     // dispatch()
@@ -43,4 +43,4 @@ const Login = () => {
   )
 };
 
-export default Login;
+export default connect()(Login);
