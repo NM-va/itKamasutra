@@ -1,6 +1,6 @@
 import {authAPI, userAPI} from '../api/api';
 import  {stopSubmit} from "redux-form";
-import {getAuthUserData} from "./auth-reduser";
+import authReducer, {getAuthUserData, setAuthUserData} from "./auth-reduser";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 const SEND_USER_DATA = 'SEND_USER_DATA';
@@ -24,12 +24,16 @@ const appReducer = (state = initialState, action) => {
   }
 };
 
-export const initializedSuccess = () => ({type: SET_INITIALIZED_SUCCESS});
+export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 
 export const initializeApp = () => {
   return (dispatch) => {
-    dispatch(getAuthUserData());
-    dispatch(initializedSuccess())
+    let promise = dispatch(getAuthUserData());
+    debugger;
+    Promise.all([promise])
+        .then(() => {
+        dispatch(initializedSuccess());
+    });
   }
 };
 
@@ -57,3 +61,5 @@ export const logout = () => {
     ;
   }
 };
+
+export default appReducer;

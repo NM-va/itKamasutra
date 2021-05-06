@@ -10,19 +10,22 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Login from './components/Login/Login';
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
-import {getAuthUserData} from "./redux/auth-reduser";
 import {connect} from "react-redux";
 import {compose} from "redux";
+import {initializeApp} from "./redux/app-reduser";
+import Preloader from "./components/common/Preloader/Preloader";
 
 
 class App extends React.Component {
   componentDidMount () {
-    this.props.getAuthUserData();
+    this.props.initializeApp();
   }
 
   render() {
     let SomeComponent = () => <DialogsContainer/>;
+    if (!this.props.initialized) {
+        return <Preloader/>
+    }
 
     return (
       <div className='app-wrapper'>
@@ -49,6 +52,10 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+    initialized: state.app.initialized
+});
+
 export default compose (
     withRouter,
-    connect(null, {initializeApp}))(App);
+    connect(mapStateToProps, {initializeApp}))(App);

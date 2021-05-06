@@ -47,7 +47,7 @@ export default authReducer;
 
 export const getAuthUserData = () => {
   return (dispatch) => {
-    authAPI.getAuthMe()
+   return  authAPI.getAuthMe()
       .then(data => {
         if (data.resultCode === 0) {
           let  {id, login, email} = data.data;
@@ -57,8 +57,7 @@ export const getAuthUserData = () => {
       })
       .then(id => {
         userAPI.getProfile(id);
-      })
-    ;
+      });
   }
 };
 
